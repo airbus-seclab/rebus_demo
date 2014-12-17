@@ -1,5 +1,4 @@
 import sys
-import subprocess
 from rebus.agent import Agent
 import re
 

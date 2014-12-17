@@ -25,7 +25,8 @@ class Hasher(Agent):
         md5_hash = hash_tools.md5hasher(desc.value)
 
         # Create a new child descriptor
-        new_desc = desc.spawn_descriptor("/md5_hash", unicode(md5_hash), self.name)
+        new_desc = desc.spawn_descriptor("/md5_hash", unicode(md5_hash),
+                                         self.name)
 
         # Push the new descriptor to the bus
         self.push(new_desc)
