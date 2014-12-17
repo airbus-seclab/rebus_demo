@@ -13,7 +13,7 @@ It comes with two simple tools implemented in
 
 These tools are then wrapped into 2 agents (``stringer`` and ``hasher``).
 
-Another agent (``grep``) will look for substrings into the output of the ``stringer`` agent.
+Another agent (``grep``) will look for regular expressions into the output of the ``stringer`` agent.
 
 
 In collaboration with some REbus agents (``inject``, ``link_finder`` and ``unarchive``) 

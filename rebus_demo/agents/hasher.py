@@ -17,7 +17,7 @@ class Hasher(Agent):
     def selector_filter(self, selector):
         # Indicate that this agent is only interested in descriptors whose
         # selector start with "/binary"
-        return selector.startswith("/binary")
+        return selector.startswith("/binary/")
 
     def process(self, desc, sender_id):
 
