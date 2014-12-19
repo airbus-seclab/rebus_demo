@@ -20,8 +20,8 @@ class Grep(Agent):
     def add_arguments(cls, subparser):
         subparser.add_argument("pattern", help="Regex to search for")
 
-    def run(self, options):
-        pattern = re.compile(options.pattern)
+    def run(self):
+        pattern = re.compile(self.options.pattern)
         sels = self.find(self.domain, "/strings/", 0)
         for s in sels:
             desc = self.get(self.domain, s)
