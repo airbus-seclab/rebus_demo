@@ -21,7 +21,7 @@ class Grep(Agent):
         subparser.add_argument("pattern", help="Regex to search for")
 
     def run(self):
-        pattern = re.compile(self.options.pattern)
+        pattern = re.compile(self.config['pattern'])
         sels = self.find(self.domain, "/strings/", 0)
         for s in sels:
             desc = self.get(self.domain, s)
