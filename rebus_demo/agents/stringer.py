@@ -10,8 +10,8 @@ class Stringer(Agent):
     * Wait for descriptors whose selectors begin with "/binary"
     * Extract printable strings from the binary, using the external command
       "strings"
-    * Output the resulting strings to the bus as a new descriptor, whose
-      precursor is the origin /binary selector.
+    * Output the resulting strings to the bus as an array in a new descriptor,
+      whose precursor is the origin /binary selector.
 
     """
     _name_ = "stringer"
@@ -25,12 +25,10 @@ class Stringer(Agent):
     def process(self, desc, sender_id):
 
         outbuf = string_tools.extract_strings(desc.value)
+        lines = [unicode(x) for x in outbuf.splitlines()]
 
-        for string in outbuf.splitlines():
-            # Do not push "None" as string value
-            if string:
-                # Create a new child descriptor for each string
-                new_desc = desc.spawn_descriptor("/strings", unicode(string),
-                                                 self.name)
-                # Push the new descriptor to the bus
-                self.push(new_desc)
+        # Create a new child descriptor for each string
+        new_desc = desc.spawn_descriptor("/strings", lines,
+                                         self.name)
+        # Push the new descriptor to the bus
+        self.push(new_desc)

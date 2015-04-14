@@ -9,7 +9,7 @@ class Grep(Agent):
     This agent performs the following tasks:
 
     * Request descriptors whose selectors match the "/string" regexp
-    * Run the external command "grep" to search a user-supplied pattern
+    * Match user supplied pattern to lines
     * Output the results to stdout
     """
     _name_ = "grep"
@@ -25,5 +25,6 @@ class Grep(Agent):
         sels = self.find(self.domain, "/strings/", 0)
         for s in sels:
             desc = self.get(self.domain, s)
-            if pattern.search(desc.value):
-                sys.stdout.write("%s = %s\n" % (desc.label, desc.value))
+            for s in desc.value:
+                if pattern.search(s):
+                    sys.stdout.write("%s = %s\n" % (desc.label, s))
