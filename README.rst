@@ -72,7 +72,7 @@ First we have to launch the bus master and the agents we want to work with:
 
 .. code::
 
- rebus_master_dbus &
+ rebus_master dbus &
  for agent in web_interface unarchive link_finder hasher stringer 
    do rebus_agent -m rebus_demo.agents --bus dbus $agent &
  done
